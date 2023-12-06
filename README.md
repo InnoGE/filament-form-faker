@@ -5,9 +5,12 @@
 [![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/innoge/filament-form-faker/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/innoge/filament-form-faker/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
 [![Total Downloads](https://img.shields.io/packagist/dt/innoge/filament-form-faker.svg?style=flat-square)](https://packagist.org/packages/innoge/filament-form-faker)
 
-The Filament Form Faker is a utility package designed for generating fake input data in Filament v3 forms. It's ideal for
-streamlining the development of extensive forms and conducting thorough form testing. **Note:** This package is not
-recommended for production use and should be limited to development and testing scenarios.
+The Filament Form Faker is a utility package designed for generating fake input data in Filament v3 forms. It's ideal
+for
+streamlining the development of extensive forms and conducting thorough form testing.
+
+> **Note**
+> This package is not recommended for production use and should be limited to development and testing scenarios.
 
 This package is currently in its Beta phase. Your participation in testing and feedback through issue reporting is
 highly appreciated.
