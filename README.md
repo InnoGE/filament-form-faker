@@ -44,7 +44,15 @@ class CreateUser extends CreateRecord
 ```
 
 By default, forms are filled with fake data only in local or testing environments. This behavior can be customized by
-overriding the `fillFormWithFakeData` method in your Page Component.
+overriding the `shouldFillFormWithFakeData` method in your Page Component.
+
+```php
+protected function shouldFillFormWithFakeData(): bool
+{
+    // insert your custom logic here
+}
+
+```
 
 ## Standalone Usage
 
@@ -68,8 +76,9 @@ Currently, we support the following field types:
 - Checkbox
 - CheckboxList
 - KeyValue
-- Options
+- Option
 - Repeater
+- Select
 - Textarea
 - TextInput
 
