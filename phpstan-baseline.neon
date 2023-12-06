@@ -1,0 +1,14 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Call to an undefined method Filament\\\\Forms\\\\Components\\\\Component\\:\\:getName\\(\\)\\.$#"
+			count: 2
+			path: src/FilamentFormFaker.php
+
+		-
+			message: """
+				#^Fetching class constant class of deprecated class Filament\\\\Forms\\\\Components\\\\MultiSelect\\:
+				Use `Select` with the `multiple\\(\\)` method instead\\.$#
+			"""
+			count: 1
+			path: src/FilamentFormFaker.php
