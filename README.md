@@ -9,7 +9,7 @@ The Filament Form Faker is a utility package designed for generating fake input 
 for
 streamlining the development of extensive forms and conducting thorough form testing.
 
-> **Note**
+> [!NOTE]
 > This package is not recommended for production use and should be limited to development and testing scenarios.
 
 This package is currently in its Beta phase. Your participation in testing and feedback through issue reporting is
