@@ -1,6 +1,6 @@
 {
     "name": "innoge/filament-form-faker",
-    "description": "A Laravel package to generate fake data for Filament forms.",
+    "description": "A package to generate fake input data for Filament forms.",
     "keywords": [
         "InnoGE",
         "laravel",
@@ -25,8 +25,8 @@
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^7.8",
         "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^8.8",
-        "pestphp/pest": "^2.20",
+        "orchestra/testbench": "^8.17",
+        "pestphp/pest": "^2.28",
         "pestphp/pest-plugin-arch": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.0",
         "phpstan/extension-installer": "^1.1",
@@ -36,8 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "InnoGE\\FilamentFormFaker\\": "src/",
-            "InnoGE\\FilamentFormFaker\\Database\\Factories\\": "database/factories/"
+            "InnoGE\\FilamentFormFaker\\": "src/"
         }
     },
     "autoload-dev": {
