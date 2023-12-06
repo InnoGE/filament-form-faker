@@ -1,69 +1,79 @@
-# :package_description
+# Filament Form Faker
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/innoge/filament-form-faker.svg?style=flat-square)](https://packagist.org/packages/innoge/filament-form-faker)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/innoge/filament-form-faker/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/innoge/filament-form-faker/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/innoge/filament-form-faker/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/innoge/filament-form-faker/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/innoge/filament-form-faker.svg?style=flat-square)](https://packagist.org/packages/innoge/filament-form-faker)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+The Filament Form Faker is a utility package designed for generating fake input data in Filament v3 forms. It's ideal for
+streamlining the development of extensive forms and conducting thorough form testing. **Note:** This package is not
+recommended for production use and should be limited to development and testing scenarios.
 
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+This package is currently in its Beta phase. Your participation in testing and feedback through issue reporting is
+highly appreciated.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require innoge/filament-form-faker --dev
 ```
 
-You can publish and run the migrations with:
+## Filament Panel Usage
 
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-config"
-```
-
-This is the contents of the published config file:
+To autofill forms with fake data in Filament Record Pages, use
+the `InnoGE\FilamentFormFaker\Traits\FillsFormWithFakeData` trait. Below is an example for
+the CreateUser of the UserResource page:
 
 ```php
-return [
-];
+<?php
+
+namespace App\Filament\Resources\UserResource\Pages;
+
+use App\Filament\Resources\UserResource;
+use Filament\Resources\Pages\CreateRecord;
+use InnoGE\FilamentFormFaker\Traits\FillsFormWithFakeData;
+
+class CreateUser extends CreateRecord
+{
+    use FillsFormWithFakeData;
+
+    protected static string $resource = UserResource::class;
+}
 ```
 
-Optionally, you can publish the views using
+By default, forms are filled with fake data only in local or testing environments. This behavior can be customized by
+overriding the `fillFormWithFakeData` method in your Page Component.
 
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
-```
+## Standalone Usage
 
-## Usage
+When you are using `Filament/Forms`outside of the Panel Builder you can use the `fake()` method on your Form instance to
+fill your form with fake data. We recommend using this method in your `mount` method.
 
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+public function mount()
+{
+    $this->getForm('form')->fake();
+    // or
+    $this->form->fake();
+}
 ```
+
+### Supported Field Types
+
+Currently, we support the following field types:
+
+- Builder
+- Checkbox
+- CheckboxList
+- KeyValue
+- Options
+- Repeater
+- Textarea
+- TextInput
+
+If you want to add support for other field types please create an issue or a pull request.
 
 ## Testing
 
@@ -85,7 +95,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Tim Geisendoerfer](https://github.com/geisi)
 - [All Contributors](../../contributors)
 
 ## License
