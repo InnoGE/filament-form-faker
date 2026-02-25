@@ -1,2 +1,3 @@
 parameters:
 	ignoreErrors:
+		- '#Trait InnoGE\\FilamentFormFaker\\Traits\\FillsFormWithFakeData is used zero times and is not analysed#'
