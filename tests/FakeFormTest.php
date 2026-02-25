@@ -16,7 +16,7 @@ use Filament\Forms\Contracts\HasForms;
 use Livewire\Component;
 
 it('fakes text inputs', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         TextInput::make('text'),
@@ -39,7 +39,7 @@ it('fakes text inputs', function () {
 });
 
 it('fakes checkboxes', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Checkbox::make('checkbox'),
@@ -52,7 +52,7 @@ it('fakes checkboxes', function () {
 });
 
 it('fakes toggles', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Toggle::make('toggle'),
@@ -65,7 +65,7 @@ it('fakes toggles', function () {
 });
 
 it('fakes textareas', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Textarea::make('textarea'),
@@ -78,7 +78,7 @@ it('fakes textareas', function () {
 });
 
 it('fakes radios', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Radio::make('radio')
@@ -95,7 +95,7 @@ it('fakes radios', function () {
 });
 
 it('fakes checkbox lists', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         CheckboxList::make('checkbox_list')
@@ -112,7 +112,7 @@ it('fakes checkbox lists', function () {
 });
 
 it('fakes selects', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Select::make('select')
@@ -140,7 +140,7 @@ it('fakes selects', function () {
 });
 
 it('fakes repeater', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Repeater::make('repeater')
@@ -164,7 +164,7 @@ it('fakes repeater', function () {
 });
 
 it('fakes builders', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Builder::make('builder')
@@ -204,7 +204,7 @@ it('fakes builders', function () {
 });
 
 it('fakes file uploads', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         FileUpload::make('file'),
@@ -217,7 +217,7 @@ it('fakes file uploads', function () {
 });
 
 it('fakes key values', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         KeyValue::make('key_value'),

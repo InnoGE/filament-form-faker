@@ -52,9 +52,6 @@ class FilamentFormFaker
 
     /**
      * Fake form data. Accepts either Filament\Forms\Form (v3) or Filament\Schemas\Schema (v4/5).
-     *
-     * @param  object  $form
-     * @return object
      */
     public function fake(object $form): object
     {
