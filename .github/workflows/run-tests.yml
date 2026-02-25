@@ -54,12 +54,13 @@ jobs:
       - name: Upgrade to Pest 4 and pin Filament 5 for Laravel 13
         if: matrix.laravel == '^13.0'
         run: |
-          composer require 'pestphp/pest:^4.0' 'pestphp/pest-plugin-laravel:^4.0' 'pestphp/pest-plugin-arch:^4.0' 'filament/forms:^5.0' --dev --no-update --no-interaction
+          composer require 'filament/forms:^5.0' --no-update --no-interaction
+          composer require 'pestphp/pest:^4.0' 'pestphp/pest-plugin-laravel:^4.0' 'pestphp/pest-plugin-arch:^4.0' --dev --no-update --no-interaction
 
       - name: Install dependencies
         run: |
-          composer require 'illuminate/contracts=${{ matrix.laravel }}.0' 'orchestra/testbench=${{ matrix.testbench }}' --no-update
-          composer config --no-plugins allow-plugins.composer/package-versions-deprecated true 2>/dev/null || true
+          composer require 'illuminate/contracts=${{ matrix.laravel }}.0' --no-update
+          composer require 'orchestra/testbench=${{ matrix.testbench }}' --dev --no-update
           COMPOSER_NO_AUDIT=1 composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
 
       - name: Execute tests
