@@ -51,14 +51,16 @@ jobs:
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
 
-      - name: Upgrade to Pest 4 for Laravel 13
+      - name: Upgrade to Pest 4 and pin Filament 5 for Laravel 13
         if: matrix.laravel == '^13.0'
-        run: composer require 'pestphp/pest:^4.0' 'pestphp/pest-plugin-laravel:^4.0' 'pestphp/pest-plugin-arch:^4.0' --dev --no-update
+        run: |
+          composer require 'pestphp/pest:^4.0' 'pestphp/pest-plugin-laravel:^4.0' 'pestphp/pest-plugin-arch:^4.0' 'filament/forms:^5.0' --dev --no-update --no-interaction
 
       - name: Install dependencies
         run: |
           composer require 'illuminate/contracts=${{ matrix.laravel }}.0' 'orchestra/testbench=${{ matrix.testbench }}' --no-update
-          composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
+          composer config --no-plugins allow-plugins.composer/package-versions-deprecated true 2>/dev/null || true
+          COMPOSER_NO_AUDIT=1 composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
 
       - name: Execute tests
         run: vendor/bin/pest --ci
