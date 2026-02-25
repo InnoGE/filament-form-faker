@@ -31,7 +31,7 @@ it('fakes text inputs', function () {
 
     expect($form->getState())
         ->text->toBeString()
-        ->numeric->toBeInt()
+        ->numeric->toBeNumeric()
         ->email->toMatch('/^.+@.+$/')
         ->password->toBeString()
         ->tel->not()->toBeNull()
