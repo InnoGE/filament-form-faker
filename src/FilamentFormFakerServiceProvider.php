@@ -3,7 +3,6 @@
 namespace InnoGE\FilamentFormFaker;
 
 use Closure;
-use Filament\Forms\Form;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -17,7 +16,9 @@ class FilamentFormFakerServiceProvider extends PackageServiceProvider
 
     public function bootingPackage(): void
     {
-        Form::macro('fake', function (Closure|bool $condition = true) {
+        FilamentFormFaker::boot();
+
+        $fakeMacro = function (Closure|bool $condition = true) {
             if (is_callable($condition) && ! $condition()) {
                 return $this;
             }
@@ -27,6 +28,16 @@ class FilamentFormFakerServiceProvider extends PackageServiceProvider
             }
 
             return app(FilamentFormFaker::class)->fake($this);
-        });
+        };
+
+        // Filament 4/5: Form was replaced by Schema
+        if (class_exists(\Filament\Schemas\Schema::class)) {
+            \Filament\Schemas\Schema::macro('fake', $fakeMacro);
+        }
+
+        // Filament 3: Form class exists in forms package
+        if (class_exists(\Filament\Forms\Form::class)) {
+            \Filament\Forms\Form::macro('fake', $fakeMacro);
+        }
     }
 }

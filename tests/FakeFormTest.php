@@ -13,7 +13,6 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Livewire\Component;
 
 it('fakes text inputs', function () {
@@ -237,7 +236,7 @@ class FakeForm extends Component implements HasForms
 
     public array $data = [];
 
-    public function form(Form $form): Form
+    public function form($form)
     {
         return $form
             ->statePath('data');
