@@ -45,8 +45,9 @@ class FilamentFormFaker
     public static function boot(): void
     {
         // Register MultiSelect faker only if the class exists (deprecated in Filament 3, removed in later versions)
-        if (class_exists(\Filament\Forms\Components\MultiSelect::class)) {
-            static::$fieldFakers[\Filament\Forms\Components\MultiSelect::class] = OptionsFaker::class;
+        $multiSelectClass = 'Filament\Forms\Components\MultiSelect';
+        if (class_exists($multiSelectClass)) {
+            static::$fieldFakers[$multiSelectClass] = OptionsFaker::class;
         }
     }
 
