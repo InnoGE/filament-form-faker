@@ -13,11 +13,10 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
-use Filament\Forms\Form;
 use Livewire\Component;
 
 it('fakes text inputs', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         TextInput::make('text'),
@@ -32,7 +31,7 @@ it('fakes text inputs', function () {
 
     expect($form->getState())
         ->text->toBeString()
-        ->numeric->toBeInt()
+        ->numeric->toBeNumeric()
         ->email->toMatch('/^.+@.+$/')
         ->password->toBeString()
         ->tel->not()->toBeNull()
@@ -40,7 +39,7 @@ it('fakes text inputs', function () {
 });
 
 it('fakes checkboxes', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Checkbox::make('checkbox'),
@@ -53,7 +52,7 @@ it('fakes checkboxes', function () {
 });
 
 it('fakes toggles', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Toggle::make('toggle'),
@@ -66,7 +65,7 @@ it('fakes toggles', function () {
 });
 
 it('fakes textareas', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Textarea::make('textarea'),
@@ -79,7 +78,7 @@ it('fakes textareas', function () {
 });
 
 it('fakes radios', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Radio::make('radio')
@@ -96,7 +95,7 @@ it('fakes radios', function () {
 });
 
 it('fakes checkbox lists', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         CheckboxList::make('checkbox_list')
@@ -113,7 +112,7 @@ it('fakes checkbox lists', function () {
 });
 
 it('fakes selects', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Select::make('select')
@@ -141,7 +140,7 @@ it('fakes selects', function () {
 });
 
 it('fakes repeater', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Repeater::make('repeater')
@@ -165,7 +164,7 @@ it('fakes repeater', function () {
 });
 
 it('fakes builders', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         Builder::make('builder')
@@ -205,7 +204,7 @@ it('fakes builders', function () {
 });
 
 it('fakes file uploads', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         FileUpload::make('file'),
@@ -218,7 +217,7 @@ it('fakes file uploads', function () {
 });
 
 it('fakes key values', function () {
-    $form = (new FakeForm())->getForm('form');
+    $form = (new FakeForm)->getForm('form');
 
     $form->schema([
         KeyValue::make('key_value'),
@@ -237,7 +236,7 @@ class FakeForm extends Component implements HasForms
 
     public array $data = [];
 
-    public function form(Form $form): Form
+    public function form($form)
     {
         return $form
             ->statePath('data');

@@ -10,20 +10,22 @@ jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        php: [8.3, 8.2, 8.1]
-        laravel: ["^11.0", "^10.0"]
+        php: [8.4, 8.3, 8.2]
+        laravel: ["^12.0", "^11.0", "^10.0"]
         stability: [prefer-lowest, prefer-stable]
         include:
+          - laravel: "^12.0"
+            testbench: 10.*
           - laravel: "^11.0"
             testbench: 9.*
           - laravel: "^10.0"
             testbench: 8.*
         exclude:
           - laravel: "^11.0"
-            php: 8.1
+            stability: prefer-lowest
 
     name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
@@ -46,7 +48,8 @@ jobs:
       - name: Install dependencies
         run: |
           composer require 'illuminate/contracts=${{ matrix.laravel }}.0' --no-update
-          composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
+          composer require 'orchestra/testbench=${{ matrix.testbench }}' --dev --no-update
+          COMPOSER_NO_AUDIT=1 composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
 
       - name: Execute tests
         run: vendor/bin/pest --ci

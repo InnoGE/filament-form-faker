@@ -19,18 +19,32 @@ class TestCase extends Orchestra
 
     protected function getPackageProviders($app)
     {
-        return [
+        $providers = [
             FilamentFormFakerServiceProvider::class,
         ];
+
+        // Filament 4/5 requires Livewire and Filament service providers
+        if (class_exists(\Livewire\LivewireServiceProvider::class)) {
+            $providers[] = \Livewire\LivewireServiceProvider::class;
+        }
+
+        if (class_exists(\Filament\Support\SupportServiceProvider::class)) {
+            $providers[] = \Filament\Support\SupportServiceProvider::class;
+        }
+
+        if (class_exists(\Filament\Forms\FormsServiceProvider::class)) {
+            $providers[] = \Filament\Forms\FormsServiceProvider::class;
+        }
+
+        if (class_exists(\Filament\Schemas\SchemasServiceProvider::class)) {
+            $providers[] = \Filament\Schemas\SchemasServiceProvider::class;
+        }
+
+        return $providers;
     }
 
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_filament-form-faker_table.php.stub';
-        $migration->up();
-        */
     }
 }
