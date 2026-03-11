@@ -14,11 +14,9 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.4, 8.3, 8.2]
-        laravel: ["^13.0", "^12.0", "^11.0", "^10.0"]
+        laravel: ["^12.0", "^11.0", "^10.0"]
         stability: [prefer-lowest, prefer-stable]
         include:
-          - laravel: "^13.0"
-            testbench: 11.*
           - laravel: "^12.0"
             testbench: 10.*
           - laravel: "^11.0"
@@ -26,10 +24,6 @@ jobs:
           - laravel: "^10.0"
             testbench: 8.*
         exclude:
-          - laravel: "^13.0"
-            php: 8.2
-          - laravel: "^13.0"
-            stability: prefer-lowest
           - laravel: "^11.0"
             stability: prefer-lowest
 
@@ -50,12 +44,6 @@ jobs:
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
-
-      - name: Upgrade to Pest 4 and pin Filament 5 for Laravel 13
-        if: matrix.laravel == '^13.0'
-        run: |
-          composer require 'filament/forms:^5.0' --no-update --no-interaction
-          composer require 'pestphp/pest:^4.0' 'pestphp/pest-plugin-laravel:^4.0' 'pestphp/pest-plugin-arch:^4.0' --dev --no-update --no-interaction
 
       - name: Install dependencies
         run: |
